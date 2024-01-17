@@ -10,23 +10,39 @@
   <title>5 Day Weather Forecast</title>
 </head>
 <body>
-    <header>Weather Dashboard</header>
-
+    <header><h1>Weather Dashboard</h1></header>
+    <main>
     <aside>
         <label for="city-input">Search for a City</label>
         <textarea id="city-input" name="city-input" rows="1" cols="10"></textarea>
-        <input type="submit" id="city-search-btn" value="Search">
+        <button type="button" id="city-search-btn" class="btn btn-light">Search</button>
         <div id="line"></div>
         <section id="previous-cities"></section>
     </aside>
 
-    <main>
-        <section id="weather-curremt"></section>
+    <section id="weather-info" style="display: none" >
+        <section id="weather-current"></section>
         <h2>5-Day Forecast</h2>
         <section id="weather-next-5-days"></section>
-    </main>
-    
+    </section>
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel">There were multiple cities by that name, please pick the one you intended to search for</h5>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+            </div>
+          </div>
+        </div>
+      </div>
+      </main>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="./assets/script/script.js"></script>
 </body>
