@@ -15,14 +15,21 @@ weatherConditionIcons = {
 let searchHistory = [];
 
 //on load, it will check for the search history data, and display it
+
 if (localStorage.getItem("search-history")) {
     searchHistory = JSON.parse(localStorage.getItem("search-history"))
+    displaySearchHistory()
+    }
+
+function displaySearchHistory(){
+    $("#previous-cities").empty()
     searchHistory.forEach(
         (searchEntry)=>{
             let citySelectorButton = $(`<button type="button" class="btn btn-secondary">${searchEntry.cityName}</button>`)
             $("#previous-cities").append(citySelectorButton)
             return citySelectorButton.on("click",()=> coordinatesToForecast(searchEntry.lat,searchEntry.lon))
-    })}
+    })
+}
 
 $("#city-input").on("keydown", function (event) {
     if (event.originalEvent.key == "Enter") {
@@ -83,6 +90,7 @@ function displayForecast(data) {
     if (searchHistory.length > 7) {
         searchHistory.pop()
     }
+    displaySearchHistory()
     console.log(searchHistory)
     localStorage.setItem("search-history", JSON.stringify(searchHistory))
 
