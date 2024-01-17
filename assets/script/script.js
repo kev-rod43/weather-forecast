@@ -70,8 +70,46 @@ function coordinatesToForecast(lat, lon,) {
         .then((response) => response.json())
         .then((data) => {
             console.log(data)
-//            displayForecast(data);
+            displayForecast(data);
         })
 }
 
+function displayForecast(data) {
+    //add valitation before saving to queue
+    searchHistory.unshift({ cityName: data.city.name, lat: data.city.coord.lat, lon: data.city.coord.lon })
+    if (searchHistory.length > 7) {
+        searchHistory.pop()
+    }
+    console.log(searchHistory)
+    localStorage.setItem("search-history", JSON.stringify(searchHistory))
 
+    if ($("#weather-info").attr("style") == "display: none") {
+        $("#weather-info").toggle()
+    }
+
+    $("#weather-current").empty()
+    $("#weather-next-5-days").empty()
+
+    console.log(data)
+    let currentWeather = data.list[0].weather[0].main
+    let { temp, humidity } = data.list[0].main;
+    $("#weather-current").append($(`<h1>${data.city.name} ${dayjs().format("MM/DD/YYYY")} ${weatherConditionIcons[currentWeather]}</h1>`))
+    $("#weather-current").append($(`<p>Temp: ${temp}°F</p>`))
+    $("#weather-current").append($(`<p>Wind: ${data.list[0].wind.speed} MPH</p>`))
+    $("#weather-current").append($(`<p>Humidity: ${humidity} %</p>`))
+
+    let futureDayIndexes = [7, 15, 23, 31, 39];
+    let futureDayCounter = 1;
+    futureDayIndexes.forEach((index) => {
+        console.log(index)
+        let futureWeather = data.list[index].weather[0].main
+        let { temp, humidity } = data.list[index].main;
+        let div = $("<div class= 'future-day'></div>")
+        div.append($(`<h2> ${dayjs().add(futureDayCounter, "day").format("MM/DD/YYYY")} ${weatherConditionIcons[futureWeather]}<h2>`))
+        futureDayCounter++
+        div.append($(`<p>Temp: ${temp}°F</p>`))
+        div.append($(`<p>Wind: ${data.list[index].wind.speed} MPH</p>`))
+        div.append($(`<p>Humidity: ${humidity} %</p>`))
+        $("#weather-next-5-days").append(div)
+    })
+}
