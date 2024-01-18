@@ -25,7 +25,7 @@ function displaySearchHistory(){
     $("#previous-cities").empty()
     searchHistory.forEach(
         (searchEntry)=>{
-            let citySelectorButton = $(`<button type="button" class="btn btn-secondary">${searchEntry.cityName}</button>`)
+            let citySelectorButton = $(`<button type="button" class=" col-12 btn btn-secondary">${searchEntry.cityName}</button>`)
             $("#previous-cities").append(citySelectorButton)
             return citySelectorButton.on("click",()=> coordinatesToForecast(searchEntry.lat,searchEntry.lon))
     })
@@ -59,7 +59,7 @@ function cityCoordinates(city) {
                 console.log(data)
                 $(".modal-body").empty()
                 data.forEach((city) => {
-                    let citySelectorButton = $(`<button type="button" class="btn btn-secondary">${city.state}, ${city.country}</button>`)
+                    let citySelectorButton = $(`<button type="button" class="city-btn col-5 btn btn-secondary">${city.state}, ${city.country}</button>`)
                     $(".modal-body").append(citySelectorButton);
 
                     return citySelectorButton.on("click", () => {
@@ -115,7 +115,7 @@ function displayForecast(data) {
         console.log(index)
         let futureWeather = data.list[index].weather[0].main
         let { temp, humidity } = data.list[index].main;
-        let div = $("<div class= 'future-day'></div>")
+        let div = $("<div class= 'future-day col-2'></div>")
         div.append($(`<h2> ${dayjs().add(futureDayCounter, "day").format("MM/DD/YYYY")} ${weatherConditionIcons[futureWeather]}<h2>`))
         futureDayCounter++
         div.append($(`<p>Temp: ${temp}°F</p>`))
