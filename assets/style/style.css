@@ -1,0 +1,51 @@
+
+:root {
+    --lightest: #9ec8f3;
+    --light: #69b0f7;
+    --dark: #164b81;
+  }
+  
+body{
+    background-color: var(--lightest);
+}
+
+header{
+    background: linear-gradient(90deg, rgba(25,10,96,1) 0%, rgba(12,10,74,1) 35%, rgba(23,76,219,1) 100%);
+    color:white;
+    height: 80px;
+    margin-bottom: 2%;   
+}
+
+#header-title{
+    display:block;
+    font-size: 60px;
+    text-align: center;
+}
+
+label {
+    font-size: 1.5em;
+    font-weight: bold;
+ }
+
+section * {
+    margin-top:2%;
+}
+
+#weather-info *{
+    margin-bottom: 2.5%;
+}
+
+#weather-current{
+    border-style: solid;
+    background-color: var(--light);
+}
+
+.future-day{
+    background-color: var(--dark);
+    margin-right:2%;
+    color: white;
+}
+
+.city-btn{
+    margin-top: 2%;
+}
