@@ -44,7 +44,7 @@ $("#city-search-btn").on("click", () => {
 })
 
 function cityCoordinates(city) {
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`)
         .then((response) => response.json())
         .then((data) => {
             if (data.length == 0) {
@@ -76,7 +76,7 @@ function cityCoordinates(city) {
 }
 
 function coordinatesToForecast(lat, lon,) {
-    fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial&cnt=40`)
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial&cnt=40`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data)
